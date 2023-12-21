@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb')
-
 async function obterDadosDoMongoDB() {
   const url = 'mongodb://admin:senhaadmin@localhost:27017/herois?authSource=admin';
   const NomeBancoDB = 'herois';
@@ -12,10 +11,9 @@ async function obterDadosDoMongoDB() {
     const SelecionarBanco = client.db(NomeBancoDB)
     const colecao = SelecionarBanco.collection('herois')
     const dadosRequisitados = await colecao.find({}).toArray()
-    console.log('DadosRecebidos: ', dadosRequisitados)
+    module.exports = dadosRequisitados
   }finally {
     await client.close()
   }
 }
-
 obterDadosDoMongoDB()
